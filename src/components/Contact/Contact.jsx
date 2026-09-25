@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Contact.css";
 import AnimatedSection from "../AnimatedSection/AnimatedSection";
+import emailjs from "@emailjs/browser";
+
 
 function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -10,21 +12,22 @@ function Contact() {
     setForm((prev) => ({ ...prev, [e.target.id]: e.target.value }));
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error();
-      setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-    } catch {
-      setStatus("error");
-    }
-  };
+  e.preventDefault();
+  setStatus("sending");
+  try {
+    await emailjs.send(
+      "service_w5u1gnl",
+      "template_5grlg8d",
+      { from_name: form.name, from_email: form.email, message: form.message },
+      "yqGBxc5gHf2KMiPW2"
+    );
+    setStatus("success");
+    setForm({ name: "", email: "", message: "" });
+  } catch {
+    setStatus("error");
+  }
+};
+
 
   return (
     <section id="contact" className="contact">
