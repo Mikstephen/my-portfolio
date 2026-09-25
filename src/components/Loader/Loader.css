@@ -1,0 +1,76 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #0a0a0a;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.loader-content img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+
+  animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+.loader-content h2 {
+  color: white;
+  font-size: 24px;
+}
+
+.loader-content h2 span {
+  color: #6366f1;
+}
+
+.loader-bar {
+  width: 160px;
+  height: 3px;
+  background: #27272a;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.loader-progress {
+  width: 40%;
+  height: 100%;
+  background: #6366f1;
+  border-radius: 10px;
+
+  animation: loading 1.2s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(400%);
+  }
+}

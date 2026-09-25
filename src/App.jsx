@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Loader from "./components/Loader/Loader";
 import Navbar from "./components/Navbar/Navbar";
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
@@ -8,16 +9,43 @@ import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 
 function App() {
-  const [dark, setDark] = useState(() => localStorage.getItem("theme") === "dark");
+  const [loading, setLoading] = useState(true);
 
+  const [dark, setDark] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
+
+  // Loading screen
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1800);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Dark/light theme
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      dark ? "dark" : "light"
+    );
+
     localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
+  // Show loader first
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <>
-      <Navbar onToggleTheme={() => setDark(d => !d)} dark={dark} />
+      <Navbar
+        onToggleTheme={() => setDark((d) => !d)}
+        dark={dark}
+      />
+
       <Hero />
       <About />
       <Skills />
