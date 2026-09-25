@@ -1,0 +1,78 @@
+:root {
+  --bg: #f0eeea;
+  --bg-alt: #e8e6e1;
+  --bg-hero: #f3f2f0;
+  --text: #1a1a1a;
+  --text-muted: #777;
+  --text-faint: #999;
+  --text-sub: #333;
+  --border: #ddd;
+  --border-alt: #ccc;
+  --input-bg: #f0eeea;
+  --card-bg: #e8e6e1;
+  --card-img-bg: #dddbd6;
+  --btn-bg: #1a1a1a;
+  --btn-text: #f0eeea;
+  --navbar-bg: rgba(240, 238, 234, 0.92);
+  --mobile-menu-bg: rgba(240, 238, 234, 0.98);
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-line: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --bg: #141414;
+  --bg-alt: #1c1c1c;
+  --bg-hero: #161616;
+  --text: #e8e6e1;
+  --text-muted: #888;
+  --text-faint: #666;
+  --text-sub: #bbb;
+  --border: #2a2a2a;
+  --border-alt: #333;
+  --input-bg: #1c1c1c;
+  --card-bg: #1c1c1c;
+  --card-img-bg: #252525;
+  --btn-bg: #e8e6e1;
+  --btn-text: #141414;
+  --navbar-bg: rgba(20, 20, 20, 0.92);
+  --mobile-menu-bg: rgba(20, 20, 20, 0.98);
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-line: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a, button, input, textarea {
+  transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}

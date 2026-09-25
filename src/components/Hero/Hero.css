@@ -1,0 +1,298 @@
+/* ================================
+   HERO
+================================ */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  background: var(--bg-hero);
+  color: var(--text);
+}
+
+
+/* ================================
+   PORTRAIT
+================================ */
+
+.hero-photo-wrap {
+  position: absolute;
+  top: 115px;
+  right: 0;
+  width: 57%;
+  height: calc(100% - 115px);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(100%);
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .hero-photo {
+  mix-blend-mode: luminosity;
+  opacity: 0.5;
+}
+
+.hero-photo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    to right,
+    var(--bg-hero) 0%,
+    color-mix(in srgb, var(--bg-hero) 95%, transparent) 8%,
+    color-mix(in srgb, var(--bg-hero) 55%, transparent) 20%,
+    color-mix(in srgb, var(--bg-hero) 8%, transparent) 35%,
+    transparent 48%
+  );
+  pointer-events: none;
+}
+
+.hero-photo-wrap::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent, var(--bg-hero));
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+
+/* ================================
+   HERO INNER
+================================ */
+
+.hero-inner {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-top: 115px;
+}
+
+
+/* ================================
+   LEFT SIDEBAR
+================================ */
+
+.hero-sidebar {
+  width: 92px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 75px;
+  padding-bottom: 55px;
+  border-right: 1px solid var(--sidebar-border);
+}
+
+.sidebar-role {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-faint);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.sidebar-line {
+  width: 1px;
+  flex: 1;
+  max-height: 470px;
+  margin: 24px 0;
+  background: var(--sidebar-line);
+}
+
+.sidebar-year {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-faint);
+  font-weight: 400;
+}
+
+
+/* ================================
+   MAIN BODY
+================================ */
+
+.hero-body {
+  position: relative;
+  width: calc(100% - 92px);
+  height: 100%;
+  padding: 75px 60px 55px 82px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+
+/* ================================
+   STATS
+================================ */
+
+.hero-stats {
+  display: flex;
+  align-items: flex-start;
+  gap: 70px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-number {
+  font-size: clamp(38px, 3.2vw, 48px);
+  line-height: 0.95;
+  font-weight: 300;
+  letter-spacing: -2px;
+  color: var(--text);
+}
+
+.stat-label {
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+
+/* ================================
+   HELLO
+================================ */
+
+.hero-heading {
+  margin-top: auto;
+  margin-bottom: 15px;
+}
+
+.hero-hello {
+  margin: 0;
+  font-size: clamp(110px, 13vw, 190px);
+  line-height: 0.82;
+  font-weight: 300;
+  letter-spacing: -8px;
+  color: var(--text);
+}
+
+.hero-sub {
+  margin: 23px 0 0 4px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--text-sub);
+  font-weight: 400;
+}
+
+
+/* ================================
+   SCROLL
+================================ */
+
+.hero-scroll {
+  display: inline-block;
+  width: fit-content;
+  margin-left: 0;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero-scroll:hover {
+  opacity: 0.5;
+  transform: translateY(3px);
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 1100px) {
+  .hero-photo-wrap { width: 55%; top: 110px; height: calc(100% - 110px); }
+  .hero-sidebar { width: 70px; }
+  .hero-body { width: calc(100% - 70px); padding-left: 55px; }
+  .hero-hello { font-size: clamp(90px, 12vw, 150px); }
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 768px) {
+  .hero { min-height: 100svh; height: auto; overflow: hidden; }
+
+  .hero-photo-wrap { top: 250px; right: 0; width: 100%; height: 65svh; }
+
+  .hero-photo-wrap::after {
+    height: 55%;
+    opacity: 1;
+  }
+
+  .hero-photo-wrap::before {
+    background: linear-gradient(
+      to bottom,
+      var(--bg-hero) 0%,
+      color-mix(in srgb, var(--bg-hero) 70%, transparent) 18%,
+      color-mix(in srgb, var(--bg-hero) 10%, transparent) 45%,
+      transparent 70%
+    );
+  }
+
+  .hero-inner { padding-top: 0; flex-direction: column; min-height: 100svh; }
+
+  .hero-sidebar {
+    width: 100%;
+    height: 55px;
+    padding: 0 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-right: none;
+    border-bottom: 1px solid var(--sidebar-border);
+  }
+
+  .sidebar-role, .sidebar-year { writing-mode: horizontal-tb; transform: none; font-size: 10px; }
+  .sidebar-line { display: none; }
+
+  .hero-body { width: 100%; height: calc(100svh - 55px); padding: 45px 24px 30px; justify-content: space-between; }
+  .hero-stats { gap: 35px; }
+  .stat-number { font-size: 34px; }
+  .stat-label { font-size: 10px; }
+  .hero-heading { margin-top: auto; margin-bottom: 25px; }
+  .hero-hello { font-size: clamp(82px, 23vw, 125px); letter-spacing: -5px; }
+  .hero-sub { font-size: 12px; margin-top: 16px; }
+  .hero-scroll { font-size: 12px; }
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+  .hero-photo-wrap { top: 270px; height: 60svh; }
+  .hero-body { padding-left: 18px; padding-right: 18px; }
+  .hero-stats { gap: 25px; }
+  .stat-number { font-size: 30px; }
+  .hero-hello { font-size: 82px; letter-spacing: -4px; }
+}
